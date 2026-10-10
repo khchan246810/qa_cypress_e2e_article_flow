@@ -28,21 +28,21 @@ describe('Article flow', () => {
     cy.contains(body).should('be.visible');
   });
 
-  it('should delete an article', () => {
-  const deleteId = uniqueId();
+    it('should delete an article', () => {
+    const deleteId = uniqueId();
 
-  cy.login(
-    `delete${deleteId}@example.com`,
-    `delete${deleteId}`,
-    `Password${deleteId}!`,
-  );
+    cy.login(
+      `delete${deleteId}@example.com`,
+      `delete${deleteId}`,
+      `Password${deleteId}!`,
+    );
 
-  cy.createArticle(title, description, body);
+    cy.createArticle(title, description, body);
 
-  cy.visit('/');
-  cy.visit('/profile/' + `delete${deleteId}`);
-cy.contains('a.preview-link', title).click();
-  cy.contains('button', 'Delete Article').click();
-  cy.contains('h1', title).should('not.exist');
-});
+    cy.visit('/');
+    cy.visit('/profile/' + `delete${deleteId}`);
+    cy.contains('a.preview-link', title).click();
+    cy.contains('button', 'Delete Article').click();
+    cy.contains('h1', title).should('not.exist');
+  });
 });
