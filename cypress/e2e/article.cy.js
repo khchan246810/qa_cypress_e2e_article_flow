@@ -29,10 +29,19 @@ describe('Article flow', () => {
   });
 
   it('should delete an article', () => {
+  const deleteId = uniqueId();
+
+  cy.login(
+    `delete${deleteId}@example.com`,
+    `delete${deleteId}`,
+    `Password${deleteId}!`,
+  );
+
   cy.createArticle(title, description, body);
 
   cy.visit('/');
-  cy.contains('a.preview-link', title).click();
+  cy.visit('/profile/' + `delete${deleteId}`);
+cy.contains('a.preview-link', title).click();
   cy.contains('button', 'Delete Article').click();
   cy.contains('h1', title).should('not.exist');
 });
