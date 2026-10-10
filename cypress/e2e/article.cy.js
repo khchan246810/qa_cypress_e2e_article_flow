@@ -29,7 +29,6 @@ describe('Article flow', () => {
   });
 
   it('should delete an article', () => {
-  cy.login(email, username, password);
   cy.createArticle(title, description, body);
 
   cy.visit('/');
